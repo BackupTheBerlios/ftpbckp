@@ -2,7 +2,7 @@ echo installing ftpbckp V 0.1
 
 echo copying files
 
-cp src/ftpbckp /usr/bin/
+cp src/ftpbckp.exp /usr/bin/
 cp src/tree /usr/bin/
 echo done ..
 echo you can start using ftpbckup

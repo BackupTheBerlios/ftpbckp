@@ -1,5 +1,4 @@
-
-#! /usr/bin/expect
+#!/usr/bin/expect
 
 
 set root_dir [lindex $argv 0]
