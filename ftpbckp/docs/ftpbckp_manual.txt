@@ -55,14 +55,17 @@ or , for automatic install , run the install script in the ftpbckp directory aft
 
 
 for unix newbies ,
-after download type the following commands :
+after download type the following commands (suppose that the file downloaded is ftpbckp0.1.tar.gz):
+
 gunzip ftpbckp0.1.tar.gz
 this will create ftpbckp0.1.tar
 tar -xf ftpbckp0.1.tar
 this will create the folder ftpbckp0.1
 cd ftpbckp0.1
-./install
+su
 (enter root passwd when asked)
+./install
+
 
 
 
