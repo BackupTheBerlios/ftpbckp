@@ -1,5 +1,6 @@
-Author 	: Saber Zrelli (saber_z@fastmail.fm)
-Version 	: 0.1  01/2004
+Author 		: Saber Zrelli (saber_z@fastmail.fm)
+Version 	: 0.1  02/2004
+
 
 
 
@@ -8,41 +9,64 @@ Version 	: 0.1  01/2004
 
 CONTENTS 
 
-0 - Licence
-1 - Installation notes
-2 - Requirements
-3 - Features
-4 - Command Line
-5 - Known Bugs
+0 - Description
+1 - Licence
+2 - Installation notes
+3 - Requirements
+4 - Features
+5 - Command Line
+6 - Known Bugs
 
 
 
-0 - Licence :
 
-This software is free and you are free to download it share it and modify it but
-no commercial use is allowd .
+0- Description :
 
 
-1 - Installation notes :
+this tool permits backup of tree directory from local machine to a specified ftp account.
+
+How does it work :
+
+command line parameters are : dir ftpsrv ftplogin ftppass
+
+dir is the directory to backup
+ftpxxx are ftp account parameters
+
+the tool connects to the ftp server using ftp parameters
+then ckechs the existance of a directory called bckp , if not it will create it , if yes it will ckech if in the directory bckp there is a directory with the same name as the directory to backup , if not it will create it , if yes that means that the directory have been backupped before ,
+then it will create a directory having the following name format : dir_date_time , and copy all the tree of the local directory in the ftp server.
+
+
+
+
+
+1 - Licence :
+
+GPL licence
+
+
+
+
+2 - Installation notes :
 
 To install this tool , you need to copy two files in your executable path (ftpbckp.exp and tree ).
-or , for automatic install , run the makefile in the ftpbckp directory after unzipping it , 
-to run the makefile just tape make in your console window the installation process requires root previleges.
+or , for automatic install , run the install script in the ftpbckp directory after unzipping it ,
+(the installation process requires root previleges).
 
 
-2 - Requirements :
+3 - Requirements :
 
 You need to have expect program installed in your system ,
 the ftpbckp.exp is an expect script and it needs the expect program to run.
 see http://www.expect.org for downloading.
 
 
-3 - Features :
+4 - Features :
 
-- Organization :
+- How does it work  :
 
 here is the situation ; you have an ftp account , and you want to use it to backup your important files .
-the ftpbckp organises your backup in the ftp server as follows : it will create a folder named backup , 
+the ftpbckp organises your backup in the ftp server as follows : it will create a folder named backup ,
 in this folder it will create one backup folder per each folder you backup ,
 these folders will be used to store the backups , in the way you have history of your backups ,
 this is an example showing how it works : 
@@ -105,7 +129,7 @@ you dont have to make it plane before backup.
 
 
 
-4 - Command Line :
+5 - Command Line :
 
 To use this utility , first open a unix console on your system ,
 
@@ -127,7 +151,7 @@ pass   : the authentification password of your account.
 
 
 
-5 - Known Bugs :
+6 - Known Bugs :
 
 none at the moment , if you notice one , please send it to me : saber_z@fastmail.fm
 
