@@ -54,6 +54,21 @@ or , for automatic install , run the install script in the ftpbckp directory aft
 (the installation process requires root previleges).
 
 
+for unix newbies ,
+after download type the following commands :
+gunzip xxx.gz
+(where xxx.gz is the downloaded file )---> this will create xxx.tar
+tar -xf xxx.tar
+this will create the folder xxx
+cd xxx
+su
+(enter root passwd)
+./ftpbckp_install.sh
+exit
+exit
+
+
+
 3 - Requirements :
 
 You need to have expect program installed in your system ,
