@@ -1,0 +1,141 @@
+Author 	: Saber Zrelli (saber_z@fastmail.fm)
+Version 	: 0.1  01/2004
+
+
+
+
+
+
+CONTENTS 
+
+0 - Licence
+1 - Installation notes
+2 - Requirements
+3 - Features
+4 - Command Line
+5 - Known Bugs
+
+
+
+0 - Licence :
+
+This software is free and you are free to download it share it and modify it but
+no commercial use is allowd .
+
+
+1 - Installation notes :
+
+To install this tool , you need to copy two files in your executable path (ftpbckp.exp and tree ).
+or , for automatic install , run the makefile in the ftpbckp directory after unzipping it , 
+to run the makefile just tape make in your console window the installation process requires root previleges.
+
+
+2 - Requirements :
+
+You need to have expect program installed in your system ,
+the ftpbckp.exp is an expect script and it needs the expect program to run.
+see http://www.expect.org for downloading.
+
+
+3 - Features :
+
+- Organization :
+
+here is the situation ; you have an ftp account , and you want to use it to backup your important files .
+the ftpbckp organises your backup in the ftp server as follows : it will create a folder named backup , 
+in this folder it will create one backup folder per each folder you backup ,
+these folders will be used to store the backups , in the way you have history of your backups ,
+this is an example showing how it works : 
+ 
+
+you have 3 folders in your machine called fold1 fold2 fold3 ,
+one you used for the first time ftpbckp to backup fold1 ,
+lets suppose you did it at this date 20/01/2004 at 20:35:43 ,
+then you will have this tree in your ftp account :
+
+- backup
+    |
+    |____ fold1
+	    |
+ 	    |____fold120012004203543
+
+
+
+then you used ftpbackup to backup the same folder 3 days later at this date 
+23/01/2004 23:43:54
+then the tree will be  :
+
+
+- backup
+    |
+    |____ fold1
+	    |
+ 	    |____fold120012004203543
+	    |
+ 	    |____fold120012004234354
+
+
+then u backed up fold2
+		 
+
+- backup
+    |
+    |____ fold1
+    |	    |
+    |	    |____fold120012004203543
+    |	    |
+    |	    |____fold120012004234354
+    |
+    |____ fold2
+	    |
+ 	    |____fold212022004124323
+
+
+.....
+
+
+
+
+- Tree copy :
+
+when you backup a folder , the ftpbckp copies all the tree of the local folder to the ftp account file system , 
+you dont have to make it plane before backup.
+
+
+
+
+
+4 - Command Line :
+
+To use this utility , first open a unix console on your system ,
+
+then type : ftpbckp.exp folder ftpsrv login pass
+
+all arguments are obligatory and this is their explanation :
+
+folder : the path to the folder you want to backup 
+	 all path formats are supported ex : /home/me/myfolder or
+	./me/myfolder
+
+ftpsrv : this is the hostname or ip adress where you have an ftp account ,
+	 ex : ftp.ifrance.com , it could also be an ip adress.
+
+login  : the login for authentification required by the ftp server.
+
+pass   : the authentification password of your account.
+
+
+
+
+5 - Known Bugs :
+
+none at the moment , if you notice one , please send it to me : saber_z@fastmail.fm
+
+
+
+
+
+
+
+
+

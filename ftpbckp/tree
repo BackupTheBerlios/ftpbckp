@@ -1,0 +1,54 @@
+# Author		: saber zrelli (saber_z@fastmail.fm)
+# usage 		: tree dirname -d/-f
+rootdir=$1
+req=$2
+if test $# -eq 3
+then
+depth=$3/$rootdir
+else
+depth=\.
+fi
+
+if [ $(expr $req = "-d") -eq 1 ]
+then 
+	cd $rootdir
+#	echo directory listing
+	for i in *
+	do
+		if test -d $i
+			then echo $depth/$i
+
+		fi
+	done
+
+
+else 
+	if [ $(expr $req = "-f") -eq 1 ]
+	then
+		cd $rootdir
+#		echo file listing
+		for i in *
+		do
+			if test -f $i
+			then echo $depth/$i
+			fi
+		done
+	else echo bad parameter
+	exit
+fi
+fi
+
+
+#echo $rootdir/
+
+
+for i in *
+do
+if test -d $i
+then 
+	tree $i $req $depth
+fi
+
+done
+
+

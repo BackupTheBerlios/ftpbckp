@@ -1,0 +1,43 @@
+Author   	:   saber zrelli (saber_z@fastmail.fm)
+version  	:   0.1
+last update 	:   16 jan 2004
+
+
+
+
+introduction :
+
+this tool permits backup of tree directory from local machine to a specified ftp account.
+ 
+How does it work :
+
+command line parameters are : dir ftpsrv ftplogin ftppass
+
+dir is the directory to backup 
+ftpxxx are ftp account parameters
+
+the tool connects to the ftp server using ftp parameters
+then ckechs the existance of a directory called bckp , if not it will create it , if yes it will ckech if in the directory bckp there is a directory with the same name as the directory to backup , if not it will create it , if yes that means that the directory have been backupped before , 
+then it will create a directory having the following name format : dir_date_time , and copy all the tree of the local directory in the ftp server.
+
+
+
+TO DO history 
+
+
+18/02/2004
+
+create installation process ,
+using rpm or shell script ,
+use configure file during install to check existance of expect program.
+
+
+manage ftp accounts in file .
+operation should be :
+
+
+
+
+end.
+
+

@@ -1,0 +1,167 @@
+#! /usr/bin/expect
+
+
+set root_dir [lindex $argv 0]
+set host [lindex $argv 1]
+set login [lindex $argv 2]
+set pass [lindex $argv 3]
+
+set user_output 0
+
+set rootdirname [file tail $root_dir]
+#cd  $root_dir
+puts "root dir name : $rootdirname\n"
+
+proc get_dirtree {root} {
+
+set dirtree  [exec tree $root -d]
+return $dirtree
+}
+
+proc get_filelist {root} {
+
+set filelist  [exec tree $root -f]
+return $filelist
+}
+
+proc create_tree {host login pass root dirtree filelist} {
+
+
+set timeout 30
+
+set rootname [file tail $root]
+set dir $rootname[clock format [clock seconds] -format %y%m%d%H%M%S]
+#puts "Creating diectory tree \n"
+#send "ls\r"
+
+spawn ftp $host
+expect "Name" {send "$login\r"
+expect "Password" {send "$pass\r"
+expect "ftp>" {send "cd backup/$rootname\r"
+}}}
+send "mkdir $dir\r"
+expect {
+			timeout  {puts "Operation Timeout ... exiting ..." ;exit 1}
+			"550*" {puts "error creating directory $dir" ; exit 1 }
+			"257*" {send "cd $dir\r" ;
+			foreach g $dirtree {
+				send "mkdir $g\r"
+				expect {
+			"257*" {}
+
+					}
+			}
+			send "lcd $root\r"
+			foreach h $filelist {
+				send "put $h\r"
+				expect {
+			"550*" {puts "error creating file $h" ; exit 1 }
+			"226*"
+					}
+			}
+			}
+			#"*" {puts "Huh \n"}
+
+}
+
+}
+proc check_ftp {host login pass root dirtree filelist} {
+
+
+set timeout 30
+
+spawn ftp $host
+expect {
+timeout        {puts "Operation Timeout ... exiting ..." ;exit 1}
+"unknown host" {puts "unknown host ........" ;exit 1}
+"Name"
+}
+
+send "$login\r"
+expect {
+timeout        {puts "Operation Timeout ... exiting ..." ;exit 1}
+"Password"
+}
+send "$pass\r"
+expect {
+timeout                {puts "Operation Timeout ... exiting ..." ;exit 1}
+"Login failed"	       {puts "login failed ........" ;exit 1}
+"ftp>"
+
+}
+
+send "cd backup\r"
+
+expect {
+
+timeout        {puts "Operation Timeout ... exiting ..." ;exit 1}
+
+"No such file or directory"
+{
+	puts "no backup directory in ftp server \n creating one"
+	send "mkdir backup\r"
+	expect {
+		"550*" {puts "error creating backup directory" ; exit 1 }
+		"257*" {send "cd backup\r"
+		send "mkdir $root\r"
+		expect {
+			"550*" {puts "error creating backup directory for $root" ; exit 1 }
+			"257*" { send "cd $root\r"
+				expect "*"  {send "bye\r"} }
+
+
+			}
+			}
+		}
+}
+
+"250*" {
+#puts "backup found\n"
+send "cd $root\r"
+expect {
+timeout        {puts "Operation Timeout ... exiting ..." ;exit 1}
+"No such file or directory"
+{
+puts "no backup directory for $root in ftp server \n creating one"
+send "mkdir $root\r"
+expect {
+"550*" {puts "error creating backup directory" ; exit 1 }
+"257*" {send "cd $root\r"
+	expect "*"  {send "bye\r"} }
+}
+
+
+}
+
+"250*" {send "bye\r"}
+
+
+}
+
+}
+}
+
+
+
+
+
+
+
+}
+
+
+
+set filelist [get_filelist $root_dir]
+set dirtree [get_dirtree $root_dir]
+check_ftp $host $login $pass $rootdirname $dirtree $filelist
+create_tree $host $login $pass $root_dir $dirtree $filelist
+
+
+
+#foreach g $dirtree {
+#puts "++++  $g"
+#}
+
+#foreach g $filelist {
+#puts "----  $g"
+#}
