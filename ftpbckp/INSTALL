@@ -1,15 +1,12 @@
 echo installing ftpbckp V 0.1
 
-echo please enter root password
-
-su
-
 echo copying files
 
-cp ../ftpbckp /usr/bin/
-cp ../tree /usr/bin/
-
+cp src/ftpbckp /usr/bin/
+cp src/tree /usr/bin/
 echo done ..
 echo you can start using ftpbckup
 echo Enjoy ! 
-echo Autor :  saber zrelli ( saber_z@fastmail.fm )
+echo Autor :  saber zrelli  \( saber_z@fastmail.fm \)
+
+PS : may be you are logged as root !
