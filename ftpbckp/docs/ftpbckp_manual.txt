@@ -7,7 +7,7 @@ Version 	: 0.1  02/2004
 
 
 
-CONTENTS 
+CONTENTS
 
 0 - Description
 1 - Licence
@@ -74,7 +74,7 @@ su
 
 You need to have expect program installed in your system ,
 the ftpbckp.exp is an expect script and it needs the expect program to run.
-see http://www.expect.org for downloading.
+
 
 
 4 - Features :
@@ -85,7 +85,7 @@ here is the situation ; you have an ftp account , and you want to use it to back
 the ftpbckp organises your backup in the ftp server as follows : it will create a folder named backup ,
 in this folder it will create one backup folder per each folder you backup ,
 these folders will be used to store the backups , in the way you have history of your backups ,
-this is an example showing how it works : 
+this is an example showing how it works :
  
 
 you have 3 folders in your machine called fold1 fold2 fold3 ,
@@ -101,7 +101,7 @@ then you will have this tree in your ftp account :
 
 
 
-then you used ftpbackup to backup the same folder 3 days later at this date 
+then you used ftpbackup to backup the same folder 3 days later at this date
 23/01/2004 23:43:54
 then the tree will be  :
 
@@ -116,7 +116,7 @@ then the tree will be  :
 
 
 then u backed up fold2
-		 
+
 
 - backup
     |
@@ -138,7 +138,7 @@ then u backed up fold2
 
 - Tree copy :
 
-when you backup a folder , the ftpbckp copies all the tree of the local folder to the ftp account file system , 
+when you backup a folder , the ftpbckp copies all the tree of the local folder to the ftp account file system ,
 you dont have to make it plane before backup.
 
 
@@ -153,7 +153,7 @@ then type : ftpbckp.exp folder ftpsrv login pass
 
 all arguments are obligatory and this is their explanation :
 
-folder : the path to the folder you want to backup 
+folder : the path to the folder you want to backup
 	 all path formats are supported ex : /home/me/myfolder or
 	./me/myfolder
 
