@@ -1,0 +1,49 @@
+version=$1
+
+echo releasing version $version
+
+dir=$2
+list=""
+
+while [ $dir ] 
+do
+if [ -d $dir ] || [ -f $dir ]
+then
+echo adding $dir to release $version
+list="$list $dir"
+shift
+dir=$2
+else
+echo $dir is not a directory nor file ... aborted
+exit
+fi
+done
+
+
+reldir=ftpbckp$version
+if [ -d $reldir ]
+then
+rm -Rf $reldir
+fi
+
+mkdir $reldir
+
+
+for i in $list
+do
+cp -r $i $reldir
+done
+
+
+
+reltar=$reldir.tar
+
+echo creating $reltar
+tar -cf $reltar $reldir
+
+
+echo creating $reltar.gz
+gzip $reltar
+
+echo cleaning 
+rm -Rf $reldir
