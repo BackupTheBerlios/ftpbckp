@@ -56,16 +56,14 @@ or , for automatic install , run the install script in the ftpbckp directory aft
 
 for unix newbies ,
 after download type the following commands :
-gunzip xxx.gz
-(where xxx.gz is the downloaded file )---> this will create xxx.tar
-tar -xf xxx.tar
-this will create the folder xxx
-cd xxx
-su
-(enter root passwd)
-./ftpbckp_install.sh
-exit
-exit
+gunzip ftpbckp0.1.tar.gz
+this will create ftpbckp0.1.tar
+tar -xf ftpbckp0.1.tar
+this will create the folder ftpbckp0.1
+cd ftpbckp0.1
+./install
+(enter root passwd when asked)
+
 
 
 
@@ -168,7 +166,15 @@ pass   : the authentification password of your account.
 
 6 - Known Bugs :
 
-none at the moment , if you notice one , please send it to me : saber_z@fastmail.fm
+no error handling ,
+you have to put the parameters correctly , otherwise you have error message.
+no help on command line available
+
+these improvements will come with the next version.
+
+
+saber zrelli.
+saber_z@fastmail.fm
 
 
 
