@@ -1,0 +1,26 @@
+
+# #Manage ftp accounts for ftpbckp utility
+# show ftp accounts
+# add new ftp account
+# remove an ftp account
+# modify ftp account
+
+case $1 in
+-a )
+	if test $# -ne 5
+	then
+		echo usage :
+		echo account -arm ftpsrv login pass [l=newlogin p=newpass h=newftpsrv]
+		exit
+
+	fi
+ 	echo "adding account"
+	;;
+-r ) echo "removing account" ;;
+-m ) echo "modifying accout" ;;
+
+esac
+
+
+
+
